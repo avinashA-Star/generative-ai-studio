@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generative AI Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Generative AI Studio</h1><span>Chat, write and create images with one API</span></header>
+
+<main>
+  <aside>
+    <h2>Connection</h2>
+    <label for="base">API base URL</label>
+    <input id="base" value="https://api.openai.com/v1">
+    <label for="key">API key</label>
+    <input id="key" type="password" placeholder="sk-..." autocomplete="off">
+    <label for="chatModel">Text model</label>
+    <input id="chatModel" value="gpt-4o-mini">
+    <label for="imgModel">Image model</label>
+    <input id="imgModel" value="dall-e-3">
+    <label for="temp">Creativity: <span id="tv">0.7</span></label>
+    <input id="temp" type="range" min="0" max="1.5" step="0.1" value="0.7">
+    <p class="hint">Works with any OpenAI-compatible API. Your key stays in this browser only.</p>
+  </aside>
+
+  <section class="stage">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="chat">Chat</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="text">Writer</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="image">Images</button>
+    </div>
+
+    <div id="chat">
+      <div class="chat" id="log" aria-live="polite"></div>
+      <div class="row">
+        <input id="chatIn" placeholder="Ask anything" aria-label="Message">
+        <button class="go" id="chatBtn" style="margin:0">Send</button>
+      </div>
+    </div>
+
+    <div id="text" hidden>
+      <label for="tpl">Content type</label>
+      <select id="tpl">
+        <option value="Write a blog post about">Blog post</option>
+        <option value="Write a short email about">Email</option>
+        <option value="Write a product description for">Product description</option>
+        <option value="Write a short story about">Short story</option>
+        <option value="Summarize the following text:">Summary</option>
+      </select>
+      <label for="topic">Topic or text</label>
+      <textarea id="topic" placeholder="Describe your topic"></textarea>
+      <button class="go" id="textBtn">Generate text</button>
+      <button class="ghost" id="copyBtn">Copy</button>
+      <div class="out" id="textOut">Your text will appear here.</div>
+    </div>
+
+    <div id="image" hidden>
+      <label for="prompt">Describe the image</label>
+      <textarea id="prompt" placeholder="A lighthouse on a cliff at sunrise, watercolor"></textarea>
+      <label for="size">Size</label>
+      <select id="size"><option>1024x1024</option><option>1792x1024</option><option>1024x1792</option></select>
+      <button class="go" id="imgBtn">Generate image</button>
+      <div class="out" id="imgOut">Your image will appear here.</div>
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
